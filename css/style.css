@@ -15,6 +15,8 @@ body {
   padding: 42px 0 60px;
 }
 
+/* HEADER */
+
 .hero {
   background: #172033;
   color: white;
@@ -27,7 +29,7 @@ body {
   margin: 0 0 8px;
   font-size: 12px;
   letter-spacing: 1.5px;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 .hero h1 {
@@ -37,8 +39,10 @@ body {
 
 .hero p:last-child {
   margin: 0;
-  opacity: .82;
+  opacity: 0.82;
 }
+
+/* CONTROLS */
 
 .controls {
   display: grid;
@@ -48,7 +52,7 @@ body {
   background: white;
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 5px 20px rgba(23, 32, 51, .07);
+  box-shadow: 0 5px 20px rgba(23, 32, 51, 0.07);
 }
 
 .control-group label {
@@ -58,13 +62,21 @@ body {
   font-weight: 700;
 }
 
-input, select, button {
+input,
+select,
+button {
   width: 100%;
   min-height: 44px;
   border-radius: 10px;
   border: 1px solid #d6ddea;
   padding: 0 13px;
   font: inherit;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid #315efb;
+  border-color: #315efb;
 }
 
 button {
@@ -76,7 +88,7 @@ button {
 }
 
 button:hover {
-  opacity: .9;
+  opacity: 0.9;
 }
 
 button.secondary {
@@ -89,6 +101,8 @@ button.secondary {
   gap: 8px;
 }
 
+/* SUMMARY */
+
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -100,7 +114,7 @@ button.secondary {
   background: white;
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 5px 20px rgba(23, 32, 51, .07);
+  box-shadow: 0 5px 20px rgba(23, 32, 51, 0.07);
 }
 
 .summary-card span {
@@ -114,6 +128,8 @@ button.secondary {
   font-size: 22px;
 }
 
+/* MESSAGE */
+
 .message {
   min-height: 24px;
   margin: 4px 0 14px;
@@ -121,18 +137,22 @@ button.secondary {
   font-weight: 700;
 }
 
+/* STUDENT LIST */
+
 .student-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
+/* STUDENT CARD */
+
 .student-card {
   background: white;
   border-radius: 16px;
   padding: 22px;
   border: 1px solid #e2e7f0;
-  box-shadow: 0 5px 20px rgba(23, 32, 51, .06);
+  box-shadow: 0 5px 20px rgba(23, 32, 51, 0.06);
 }
 
 .student-header {
@@ -159,6 +179,8 @@ button.secondary {
   white-space: nowrap;
 }
 
+/* SCORES */
+
 .scores {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -178,6 +200,12 @@ button.secondary {
   margin-bottom: 4px;
 }
 
+.score strong {
+  font-size: 16px;
+}
+
+/* STATUS AND REMARK */
+
 .status-row {
   display: flex;
   flex-wrap: wrap;
@@ -192,6 +220,8 @@ button.secondary {
   font-size: 12px;
   font-weight: 700;
 }
+
+/* RESPONSIVE */
 
 @media (max-width: 850px) {
   .controls {
@@ -219,5 +249,13 @@ button.secondary {
 
   .buttons {
     grid-column: auto;
+  }
+
+  .scores {
+    grid-template-columns: 1fr;
+  }
+
+  .student-header {
+    flex-direction: column;
   }
 }
