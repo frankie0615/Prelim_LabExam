@@ -7,6 +7,7 @@ import {
   getTopStudent
 } from "./gradeUtils.js";
 
+
 const studentList = document.getElementById("studentList");
 const classAverage = document.getElementById("classAverage");
 const passingCount = document.getElementById("passingCount");
@@ -14,44 +15,87 @@ const displayedCount = document.getElementById("displayedCount");
 const topStudent = document.getElementById("topStudent");
 const messageArea = document.getElementById("messageArea");
 
+
 export function displayStudents(students) {
+  studentList.innerHTML = "";
+
   if (students.length === 0) {
-    studentList.innerHTML = "";
     displayMessage("No students found");
     return;
   }
 
-  students.forEach(() => {});
-  studentList.innerHTML = students.map(student => {
-    const { id, name, block, quiz, lab, exam } = student;
-    const finalGrade = calculateFinalGrade(student);
-    const status = getAcademicStatus(finalGrade);
-    const remark = getPerformanceRemark(finalGrade);
+  students.forEach((student) => {
+    const {
+      id,
+      name,
+      block,
+      quiz,
+      lab,
+      exam
+    } = student;
 
-    return `
-      <article class="student-card" data-id="${id}">
-        <div class="student-header">
-          <div>
-            <h2>${name}</h2>
-            <div class="block">${block}</div>
-          </div>
-          <div class="grade">${finalGrade.toFixed(2)}</div>
+    const finalGrade = calculateFinalGrade(student);
+    const academicStatus = getAcademicStatus(finalGrade);
+    const performanceRemark = getPerformanceRemark(finalGrade);
+
+    const card = document.createElement("article");
+
+    card.classList.add("student-card");
+
+    card.dataset.id = id;
+
+    card.innerHTML = `
+      <div class="student-header">
+
+        <div>
+          <h2>${name}</h2>
+          <div class="block">${block}</div>
         </div>
-        <div class="scores">
-          <div class="score"><small>Quiz</small><strong>${quiz}</strong></div>
-          <div class="score"><small>Laboratory</small><strong>${lab}</strong></div>
-          <div class="score"><small>Prelim Exam</small><strong>${exam}</strong></div>
+
+        <div class="grade">
+          ${finalGrade.toFixed(2)}
         </div>
-        <div class="status-row">
-          <span class="badge">${status}</span>
-          <span class="badge">${remark}</span>
+
+      </div>
+
+      <div class="scores">
+
+        <div class="score">
+          <small>Quiz</small>
+          <strong>${quiz}</strong>
         </div>
-      </article>
+
+        <div class="score">
+          <small>Laboratory</small>
+          <strong>${lab}</strong>
+        </div>
+
+        <div class="score">
+          <small>Prelim Exam</small>
+          <strong>${exam}</strong>
+        </div>
+
+      </div>
+
+      <div class="status-row">
+
+        <span class="badge">
+          Status: ${academicStatus}
+        </span>
+
+        <span class="badge">
+          Remark: ${performanceRemark}
+        </span>
+
+      </div>
     `;
-  }).join("");
+
+    studentList.appendChild(card);
+  });
 
   displayMessage("");
 }
+
 
 export function displaySummary(students) {
   const average = calculateClassAverage(students);
@@ -59,12 +103,21 @@ export function displaySummary(students) {
   const top = getTopStudent(students);
 
   classAverage.textContent = average.toFixed(2);
+
   passingCount.textContent = passing;
+
   displayedCount.textContent = students.length;
-  topStudent.textContent = top
-    ? `${top.name} (${calculateFinalGrade(top).toFixed(2)})`
-    : "None";
+
+  if (top === null) {
+    topStudent.textContent = "None";
+  } else {
+    const topGrade = calculateFinalGrade(top);
+
+    topStudent.textContent =
+      `${top.name} (${topGrade.toFixed(2)})`;
+  }
 }
+
 
 export function displayMessage(message) {
   messageArea.textContent = message;
