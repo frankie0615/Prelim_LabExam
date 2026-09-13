@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="hero">
+            <p class="eyebrow">31-ITE • PRELIM EXAMINATION</p>
+            <h1>Student Performance Dashboard</h1>
+            <p>Search, filter, and review student academic performance.</p>
+        </header>
+
+        <section class="controls">
+
+            <div class="control-group">
+                <label for="searchInput">Search by name</label>
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Enter student name"
+                >
+            </div>
+
+            <div class="control-group">
+                <label for="blockFilter">Filter by block</label>
+                <select id="blockFilter">
+                    <option value="All">All</option>
+                    <option value="31-ITE-01">31-ITE-01</option>
+                    <option value="31-ITE-02">31-ITE-02</option>
+                    <option value="31-ITE-03">31-ITE-03</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="statusFilter">Filter by status</label>
+                <select id="statusFilter">
+                    <option value="All">All</option>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Passed">Passed</option>
+                    <option value="Needs Improvement">Needs Improvement</option>
+                    <option value="Failed">Failed</option>
+                </select>
+            </div>
+
+            <div class="buttons">
+                <button id="applyBtn" type="button">Apply Filters</button>
+                <button id="resetBtn" type="button">Reset</button>
+            </div>
+
+        </section>
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+                <span>Class Average</span>
+                <strong id="classAverage">0.00</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Passing Students</span>
+                <strong id="passingCount">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Displayed Count</span>
+                <strong id="displayedCount">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Top Student</span>
+                <strong id="topStudent">None</strong>
+            </div>
+
+        </section>
+
+        <div id="messageArea" class="message"></div>
+
+        <section id="studentList" class="student-grid"></section>
+
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+
+</body>
+</html>
