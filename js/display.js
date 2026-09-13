@@ -79,13 +79,8 @@ export function displayStudents(students) {
 
       <div class="status-row">
 
-        <span class="badge">
-          Status: ${academicStatus}
-        </span>
-
-        <span class="badge">
-          Remark: ${performanceRemark}
-        </span>
+       <span class="badge">${academicStatus}</span>
+<span class="badge">${performanceRemark}</span>
 
       </div>
     `;
